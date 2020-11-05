@@ -44,6 +44,9 @@ public class SlayerJournalItem extends Item {
         if(worldIn.isRemote) {
             Minecraft.getInstance().displayGuiScreen(new SlayerJournalGui(new StringTextComponent("test"), this));
         }
+        CurrentTask = new SlayerTask(playerIn);
+        CurrentTask.InitTask();
+        CurrentTask = null;
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
