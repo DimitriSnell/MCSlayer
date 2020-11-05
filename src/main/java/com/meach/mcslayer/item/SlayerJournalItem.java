@@ -7,6 +7,7 @@ package com.meach.mcslayer.item;
 
 import java.util.List;
 
+import com.meach.mcslayer.Slayer.SlayerTask;
 import com.meach.mcslayer.client.gui.SlayerJournalGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MinecraftGame;
@@ -23,6 +24,8 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraft.world.World;
 
 public class SlayerJournalItem extends Item {
+    private SlayerTask CurrentTask = null;
+
     public SlayerJournalItem(Properties properties) {
         super(properties);
     }
@@ -39,8 +42,10 @@ public class SlayerJournalItem extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         if(worldIn.isRemote) {
-            Minecraft.getInstance().displayGuiScreen(new SlayerJournalGui(new StringTextComponent("test")));
+            Minecraft.getInstance().displayGuiScreen(new SlayerJournalGui(new StringTextComponent("test"), this));
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
+
+    public SlayerTask GetCurrentTask(){ return CurrentTask;}
 }

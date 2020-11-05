@@ -1,9 +1,12 @@
 package com.meach.mcslayer.client.gui;
 
+import com.meach.mcslayer.Slayer.SlayerTask;
+import com.meach.mcslayer.item.SlayerJournalItem;
 import com.meach.mcslayer.mcslayer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -14,9 +17,11 @@ public class SlayerJournalGui extends Screen{
 
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(mcslayer.MOD_ID,
             "textures/guis/d5qld50-4b77b07b-aae6-4a0b-883c-5fa3a60be7a4.png");
-
-    public SlayerJournalGui(ITextComponent titleIn){
+    private FontRenderer fr;
+    private SlayerJournalItem Journal;
+    public SlayerJournalGui(ITextComponent titleIn, SlayerJournalItem INJournal){
         super(titleIn);
+        Journal = INJournal;
     }
 
     @Override
@@ -31,6 +36,13 @@ public class SlayerJournalGui extends Screen{
 
         RenderSystem.color4f(1,1,1,1);
         func_238463_a_(p_230430_1_,x,y,0F,0F,271,180,271,180);
+
+        fr = Minecraft.getInstance().fontRenderer;
+        fr.func_238421_b_(p_230430_1_, "SLAYER JOURNAL", x+15, y+10, 0);
+        fr.func_238421_b_(p_230430_1_, "CURRENT TASK:", x+15, y+30, 0);
+        if(Journal.GetCurrentTask() == null){
+            fr.func_238421_b_(p_230430_1_, "NONE", x+15, y+40, 0);
+        }
     }
 
 
