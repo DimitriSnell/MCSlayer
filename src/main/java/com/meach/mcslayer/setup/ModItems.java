@@ -5,10 +5,13 @@
 
 package com.meach.mcslayer.setup;
 
+import com.meach.mcslayer.capabilities.PlayerSlayer;
+import com.meach.mcslayer.capabilities.SlayerStorage;
 import com.meach.mcslayer.item.SlayerJournalItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Item.Properties;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ModItems {
@@ -24,5 +27,6 @@ public class ModItems {
         SLAYER_JOURNAL = Registration.ITEMS.register("slayer_journal", () -> {
             return new SlayerJournalItem((new Properties()).group(ItemGroup.MISC).maxStackSize(1));
         });
+
     }
 }

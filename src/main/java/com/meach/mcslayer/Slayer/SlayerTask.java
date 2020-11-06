@@ -15,8 +15,7 @@ public class SlayerTask {
     private HashMap<Class<? extends Entity>,Float> EntityListWeight;
     private HashMap<Class<? extends Entity>,Float> EntityListProbability;
 
-    public SlayerTask(PlayerEntity INPlayer){
-        Player = INPlayer;
+    public SlayerTask(){
         EntityListWeight = new HashMap<Class<? extends Entity>,Float>();
         EntityListProbability = new HashMap<Class<? extends Entity>,Float>();
         EntityListWeight.put(CreeperEntity.class,10F);
@@ -49,5 +48,7 @@ public class SlayerTask {
         }
 
     }
+
+    public Class<? extends Entity> getTaskType(){return TaskType;}
 
 }

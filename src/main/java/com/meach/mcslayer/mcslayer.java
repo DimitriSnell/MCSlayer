@@ -5,11 +5,15 @@
 
 package com.meach.mcslayer;
 
+import com.meach.mcslayer.capabilities.PlayerPropertyEvents;
+import com.meach.mcslayer.capabilities.PlayerSlayer;
+import com.meach.mcslayer.capabilities.SlayerStorage;
 import com.meach.mcslayer.setup.Registration;
 import java.util.stream.Collectors;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -34,6 +38,8 @@ public class mcslayer {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         MinecraftForge.EVENT_BUS.register(this);
+
+
     }
 
     private void setup(FMLCommonSetupEvent event) {
@@ -61,5 +67,11 @@ public class mcslayer {
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
         LOGGER.info("HELLO from server starting");
+    }
+
+    @SubscribeEvent
+    public static void onCommonSetup(FMLCommonSetupEvent e) {
+
+        CapabilityManager.INSTANCE.register(PlayerSlayer.class,new SlayerStorage(), ()->null);
     }
 }
