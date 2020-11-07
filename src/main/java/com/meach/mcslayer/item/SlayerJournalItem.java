@@ -41,9 +41,15 @@ public class SlayerJournalItem extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+
         if(worldIn.isRemote) {
             Minecraft.getInstance().displayGuiScreen(new SlayerJournalGui(new StringTextComponent("test"), this, playerIn));
         }
+
+        return super.onItemRightClick(worldIn, playerIn, handIn);
+    }
+
+    public void generateTask(PlayerEntity playerIn){
         LazyOptional<PlayerSlayer> holder = playerIn.getCapability(PlayerProperties.PLAYER_SLAYER,null);
 
         if(holder.isPresent()){
@@ -55,8 +61,6 @@ public class SlayerJournalItem extends Item {
                 e.printStackTrace();
             }
         }
-
-        return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
     public SlayerTask GetCurrentTask(){ return CurrentTask;}

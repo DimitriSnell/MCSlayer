@@ -10,10 +10,18 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraftforge.common.util.LazyOptional;
+
+import java.util.List;
 
 
 public class SlayerJournalGui extends Screen{
@@ -30,6 +38,18 @@ public class SlayerJournalGui extends Screen{
     }
 
     @Override
+    public void func_231160_c_(){
+        super.func_231160_c_();
+
+        int x = (this.field_230708_k_-271)/2;
+        int y = (this.field_230709_l_-180)/2;
+        func_230480_a_(new Button(x+15,y+60,100,20,new StringTextComponent("New Task"),(button)->{
+                Journal.generateTask(player);
+        }));
+
+    }
+
+    @Override
     public void func_230430_a_(MatrixStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
 
         int x = (this.field_230708_k_-271)/2;
@@ -41,6 +61,10 @@ public class SlayerJournalGui extends Screen{
 
         RenderSystem.color4f(1,1,1,1);
         func_238463_a_(p_230430_1_,x,y,0F,0F,271,180,271,180);
+
+        for(Widget w : this.field_230710_m_){
+            w.func_230430_a_(p_230430_1_,p_230430_2_,p_230430_3_,p_230430_4_);
+        }
 
         fr = Minecraft.getInstance().fontRenderer;
         fr.func_238421_b_(p_230430_1_, "SLAYER JOURNAL", x+15, y+10, 0);
@@ -59,9 +83,8 @@ public class SlayerJournalGui extends Screen{
                 e.printStackTrace();
             }
         }
-
-
     }
+
 
 
 }
