@@ -1,0 +1,12 @@
+{
+  "item.slayer_journal.open": {
+    "category" : "item",
+    "subtitle":"item.slayer_journal.open.sub",
+    "sounds":[
+      {
+        "name": "mcslayer:items/slayer_journal/open",
+        "stream": true
+      }
+    ]
+  }
+}
