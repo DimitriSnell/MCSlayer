@@ -31,7 +31,7 @@ import javax.swing.*;
 
 public class SlayerJournalItem extends Item {
     private SlayerTask CurrentTask = null;
-
+    private int CurrentTaskNum;
     public SlayerJournalItem(Properties properties) {
         super(properties);
     }

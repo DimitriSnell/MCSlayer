@@ -77,7 +77,8 @@ public class SlayerJournalGui extends Screen{
                 if(st.getCurrentTask() == null){
                     fr.func_238421_b_(p_230430_1_, "NONE", x+15, y+40, 0);
                 }else{
-                    fr.func_238421_b_(p_230430_1_, st.getCurrentTask().getTaskType().toString(), x+15, y+40, 0);
+                    fr.func_238421_b_(p_230430_1_, st.getCurrentTask().toString() , x+15, y+40, 0);
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
