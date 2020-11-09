@@ -32,6 +32,7 @@ import javax.swing.*;
 public class SlayerJournalItem extends Item {
     private SlayerTask CurrentTask = null;
     private int CurrentTaskNum;
+
     public SlayerJournalItem(Properties properties) {
         super(properties);
     }
@@ -71,5 +72,17 @@ public class SlayerJournalItem extends Item {
         }
     }
 
+    public void cancelTask(PlayerEntity playerIn){
+        LazyOptional<PlayerSlayer> holder = playerIn.getCapability(PlayerProperties.PLAYER_SLAYER,null);
+
+        if(holder.isPresent()){
+            try {
+                PlayerSlayer st = holder.orElseThrow(()-> new Exception("pointless"));
+                st.SetCurrentTask(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public SlayerTask GetCurrentTask(){ return CurrentTask;}
 }

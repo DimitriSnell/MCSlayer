@@ -6,6 +6,7 @@
 package com.meach.mcslayer.setup;
 
 import com.meach.mcslayer.capabilities.*;
+import com.meach.mcslayer.events.SlayerEvents;
 import com.meach.mcslayer.mcslayer;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -36,6 +37,7 @@ public class Registration {
         ITEMS.register(modEventBus);
         SOUNDS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(new PlayerPropertyEvents());
+        MinecraftForge.EVENT_BUS.register(new SlayerEvents());
         ModItems.register();
         Sounds.register();
     }

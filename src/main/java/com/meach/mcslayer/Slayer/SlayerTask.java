@@ -98,4 +98,5 @@ public class SlayerTask {
     public Class<? extends Entity> getTaskType(){return TaskType;}
 
     public int getTaskNum(){return TaskNum;}
+    public void setTaskNum(int input){TaskNum = input;}
 }

@@ -21,6 +21,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraftforge.common.util.LazyOptional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,10 +32,26 @@ public class SlayerJournalGui extends Screen{
     private FontRenderer fr;
     private SlayerJournalItem Journal;
     private PlayerEntity player;
-    public SlayerJournalGui(ITextComponent titleIn, SlayerJournalItem INJournal, PlayerEntity playerIn){
+    private PlayerSlayer ps;
+    private ArrayList<Button> buttonlist = new ArrayList<Button>();
+    private Button b2;
+    private Button b;
+
+    public SlayerJournalGui(ITextComponent titleIn, SlayerJournalItem INJournal, PlayerEntity playerIn) {
         super(titleIn);
         player = playerIn;
         Journal = INJournal;
+        LazyOptional<PlayerSlayer> holder = player.getCapability(PlayerProperties.PLAYER_SLAYER, null);
+
+        if (holder.isPresent()) {
+            try {
+                PlayerSlayer st = holder.orElseThrow(() -> new Exception("pointless"));
+                ps = st;
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -43,9 +60,20 @@ public class SlayerJournalGui extends Screen{
 
         int x = (this.field_230708_k_-271)/2;
         int y = (this.field_230709_l_-180)/2;
-        func_230480_a_(new Button(x+15,y+60,100,20,new StringTextComponent("New Task"),(button)->{
-                Journal.generateTask(player);
-        }));
+        b = new Button(x + 15, y + 60, 100, 20, new StringTextComponent("New Task"), (button) -> {
+            Journal.generateTask(player);
+
+
+
+        });
+        b2 = new Button(x + 15, y + 60, 100, 20, new StringTextComponent("Cancel Task"), (button) -> {
+            Journal.cancelTask(player);
+
+
+        });
+
+        func_230480_a_(b);
+        func_230480_a_(b2);
 
     }
 
@@ -54,9 +82,15 @@ public class SlayerJournalGui extends Screen{
 
         int x = (this.field_230708_k_-271)/2;
         int y = (this.field_230709_l_-180)/2;
+        if(ps.getCurrentTask() == null) {
+            b.field_230694_p_ = true;
+            b2.field_230694_p_ = false;
+        }else{
+            b2.field_230694_p_ = true;
+            b.field_230694_p_ = false;
+        }
 
         this.func_230446_a_(p_230430_1_);
-        //super.func_230430_a_(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
         Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
 
         RenderSystem.color4f(1,1,1,1);
@@ -67,23 +101,16 @@ public class SlayerJournalGui extends Screen{
         }
 
         fr = Minecraft.getInstance().fontRenderer;
-        fr.func_238421_b_(p_230430_1_, "SLAYER JOURNAL", x+15, y+10, 0);
+        fr.func_238421_b_(p_230430_1_, "SLAYER JOURNAL", x+34, y+10, 0);
         fr.func_238421_b_(p_230430_1_, "CURRENT TASK:", x+15, y+30, 0);
-        LazyOptional<PlayerSlayer> holder = player.getCapability(PlayerProperties.PLAYER_SLAYER,null);
 
-        if(holder.isPresent()){
-            try {
-                PlayerSlayer st = holder.orElseThrow(()-> new Exception("pointless"));
-                if(st.getCurrentTask() == null){
-                    fr.func_238421_b_(p_230430_1_, "NONE", x+15, y+40, 0);
-                }else{
-                    fr.func_238421_b_(p_230430_1_, st.getCurrentTask().toString() , x+15, y+40, 0);
+        if(ps.getCurrentTask() == null){
+            fr.func_238421_b_(p_230430_1_, "NONE", x+15, y+40, 0);
+        }else{
+            fr.func_238421_b_(p_230430_1_, ps.getCurrentTask().toString() , x+15, y+40, 0);
 
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
+
     }
 
 

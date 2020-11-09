@@ -15,8 +15,6 @@ public class PlayerProperties implements ICapabilitySerializable<INBT> {
     @CapabilityInject(PlayerSlayer.class)
 
     public static Capability<PlayerSlayer> PLAYER_SLAYER = null;
-    //public static LazyOptional<PlayerSlayer> getPlayerSlayer(PlayerEntity player){return player.getCapability(PLAYER_SLAYER,null);}
-    //private PlayerSlayer playerSlayer  = new PlayerSlayer();
     private static final LazyOptional<PlayerSlayer> holder = LazyOptional.of(PlayerSlayer::new);
 
     @Override
