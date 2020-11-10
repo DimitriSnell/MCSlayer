@@ -19,11 +19,9 @@ import java.lang.reflect.ParameterizedType;
 public class SlayerEvents {
     @SubscribeEvent
     public static void SlayerKillEvent(LivingDeathEvent event) {
-        System.out.println("EVENT FIRED");
         if (event.getSource().getTrueSource() instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity)(event.getSource().getTrueSource());
             LazyOptional<PlayerSlayer> holder = player.getCapability(PlayerProperties.PLAYER_SLAYER, null);
-            System.out.println("EVENT FIRED");
             if (holder.isPresent()) {
                 try {
                     PlayerSlayer st = holder.orElseThrow(()-> new Exception("pointless"));
@@ -35,6 +33,8 @@ public class SlayerEvents {
                             st.SetCurrentTask(null);
                             player.sendMessage(new StringTextComponent("Congratulations! Your Task is complete"), player.getGameProfile().getId());
                         }
+
+                        st.CalcXpForKill(40);
                     }
 
                 } catch (Exception e) {

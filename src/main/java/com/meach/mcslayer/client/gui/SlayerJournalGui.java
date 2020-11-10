@@ -103,7 +103,7 @@ public class SlayerJournalGui extends Screen{
         fr = Minecraft.getInstance().fontRenderer;
         fr.func_238421_b_(p_230430_1_, "SLAYER JOURNAL", x+34, y+10, 0);
         fr.func_238421_b_(p_230430_1_, "CURRENT TASK:", x+15, y+30, 0);
-
+        fr.func_238421_b_(p_230430_1_, ps.getSlayerLevel() + " " + ps.getCurrentXp() + " " + ps.getXpToNextLevel(), x+15, y+120, 0);
         if(ps.getCurrentTask() == null){
             fr.func_238421_b_(p_230430_1_, "NONE", x+15, y+40, 0);
         }else{
