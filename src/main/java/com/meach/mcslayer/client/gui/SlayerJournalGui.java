@@ -1,6 +1,4 @@
 package com.meach.mcslayer.client.gui;
-
-import com.meach.mcslayer.Slayer.SlayerTask;
 import com.meach.mcslayer.capabilities.PlayerProperties;
 import com.meach.mcslayer.capabilities.PlayerSlayer;
 import com.meach.mcslayer.item.SlayerJournalItem;
@@ -13,22 +11,19 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraftforge.common.util.LazyOptional;
-
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class SlayerJournalGui extends Screen{
 
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(mcslayer.MOD_ID,
             "textures/guis/d5qld50-4b77b07b-aae6-4a0b-883c-5fa3a60be7a4.png");
+    private static final ResourceLocation XPBAR_TEXTURE1 = new ResourceLocation(mcslayer.MOD_ID, "textures/guis/xpbar1.png");
+    private static final ResourceLocation XPBAR_TEXTURE2 = new ResourceLocation(mcslayer.MOD_ID, "textures/guis/xpbar2.png");
     private FontRenderer fr;
     private SlayerJournalItem Journal;
     private PlayerEntity player;
@@ -103,14 +98,18 @@ public class SlayerJournalGui extends Screen{
         fr = Minecraft.getInstance().fontRenderer;
         fr.func_238421_b_(p_230430_1_, "SLAYER JOURNAL", x+34, y+10, 0);
         fr.func_238421_b_(p_230430_1_, "CURRENT TASK:", x+15, y+30, 0);
-        fr.func_238421_b_(p_230430_1_, ps.getSlayerLevel() + " " + ps.getCurrentXp() + " " + ps.getXpToNextLevel(), x+15, y+120, 0);
         if(ps.getCurrentTask() == null){
             fr.func_238421_b_(p_230430_1_, "NONE", x+15, y+40, 0);
         }else{
             fr.func_238421_b_(p_230430_1_, ps.getCurrentTask().toString() , x+15, y+40, 0);
 
         }
-
+        fr.func_238421_b_(p_230430_1_, ps.getSlayerLevel() + "", x+68, y+140, 0);
+        Minecraft.getInstance().getTextureManager().bindTexture(XPBAR_TEXTURE1);
+        func_238463_a_(p_230430_1_,x+18,y+150,0F,0F,100,60,100,60);
+        Minecraft.getInstance().getTextureManager().bindTexture(XPBAR_TEXTURE2);
+        double ratio = ps.getCurrentXp()/ps.getXpToNextLevel();
+        func_238463_a_(p_230430_1_,x+18,y+150,0F,0F,(int)(100*ratio),60,(int)(100*ratio),60);
     }
 
 
