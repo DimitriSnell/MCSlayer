@@ -57,14 +57,10 @@ public class SlayerJournalGui extends Screen{
         int y = (this.field_230709_l_-180)/2;
         b = new Button(x + 15, y + 60, 100, 20, new StringTextComponent("New Task"), (button) -> {
             Journal.generateTask(player);
-
-
-
         });
+
         b2 = new Button(x + 15, y + 60, 100, 20, new StringTextComponent("Cancel Task"), (button) -> {
             Journal.cancelTask(player);
-
-
         });
 
         func_230480_a_(b);
@@ -104,6 +100,9 @@ public class SlayerJournalGui extends Screen{
             fr.func_238421_b_(p_230430_1_, ps.getCurrentTask().toString() , x+15, y+40, 0);
 
         }
+        fr.func_238421_b_(p_230430_1_, "CURRENT STREAK:" + " " + ps.getSlayerStreak(), x+15, y+100, 0);
+        fr.func_238421_b_(p_230430_1_, "SLAYER POINTS:" + " " + ps.getSlayerPoints(), x+15, y+120, 0);
+
         fr.func_238421_b_(p_230430_1_, ps.getSlayerLevel() + "", x+68, y+140, 0);
         Minecraft.getInstance().getTextureManager().bindTexture(XPBAR_TEXTURE1);
         func_238463_a_(p_230430_1_,x+18,y+150,0F,0F,100,60,100,60);

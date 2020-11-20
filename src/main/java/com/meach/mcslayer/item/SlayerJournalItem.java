@@ -78,11 +78,20 @@ public class SlayerJournalItem extends Item {
         if(holder.isPresent()){
             try {
                 PlayerSlayer st = holder.orElseThrow(()-> new Exception("pointless"));
-                st.SetCurrentTask(null);
+                if(st.getSlayerPoints() >= 30) {
+                    st.SetCurrentTask(null);
+                    playerIn.sendMessage(new StringTextComponent("You have cancelled a task, your slayer streak has been reset to 0"), playerIn.getGameProfile().getId());
+                    st.setSlayerStreak(0);
+                    st.setSlayerPoints(st.getSlayerPoints() - 30);
+                }
+                else{
+                    playerIn.sendMessage(new StringTextComponent("You do not have enough slayer points to cancel this task!"), playerIn.getGameProfile().getId());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
     }
     public SlayerTask GetCurrentTask(){ return CurrentTask;}
 }

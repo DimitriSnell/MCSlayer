@@ -31,9 +31,11 @@ public class SlayerEvents {
                         task.setTaskNum(task.getTaskNum() - 1);
                         if(task.getTaskNum() < 1){
                             st.SetCurrentTask(null);
-                            player.sendMessage(new StringTextComponent("Congratulations! Your Task is complete"), player.getGameProfile().getId());
+                            st.setSlayerStreak(st.getSlayerStreak() + 1);
+                            player.sendMessage(new StringTextComponent("Congratulations! Your Task is complete. " +
+                                    "You have been awarded " + st.CalcPointsPerTask() + " Slayer Points!"), player.getGameProfile().getId());
+                            st.setSlayerPoints(st.getSlayerPoints() + st.CalcPointsPerTask());
                         }
-
                         st.CalcXpForKill(40);
                     }
 
