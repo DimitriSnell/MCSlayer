@@ -1,4 +1,5 @@
 {
   "item.mcslayer.slayer_journal": "Slayer Journal",
-  "item.slayer_journal.open.sub": "Open book"
+  "item.slayer_journal.open.sub": "Open book",
+  "entity.mcslayer.cave_horror": "Cave Horror"
 }

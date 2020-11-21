@@ -73,7 +73,6 @@ public class SlayerTask {
             }
         }
         double p2 = Math.random();
-        System.out.println(TaskType.toString());
         TaskNum = (int)(EntityListTaskNum.get(TaskType) * p2);
         TaskNum += (EntityListTaskNum.get(TaskType)/3);
     }
