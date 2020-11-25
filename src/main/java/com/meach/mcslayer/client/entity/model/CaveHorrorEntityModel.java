@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class CaveHorrorEntityModel<T extends CaveHorror> extends EntityModel<CaveHorror> {
+    private final ModelRenderer body;
     private final ModelRenderer Torso;
     private final ModelRenderer cube_r1;
     private final ModelRenderer cube_r2;
@@ -34,21 +35,21 @@ public class CaveHorrorEntityModel<T extends CaveHorror> extends EntityModel<Cav
     private final ModelRenderer cube_r16;
     private final ModelRenderer cube_r17;
     private final ModelRenderer Legs;
-    private final ModelRenderer leftleg;
     private final ModelRenderer cube_r18;
     private final ModelRenderer cube_r19;
     private final ModelRenderer cube_r20;
-    private final ModelRenderer rightleg;
-    private final ModelRenderer cube_r21;
-    private final ModelRenderer cube_r22;
-    private final ModelRenderer cube_r23;
 
     public CaveHorrorEntityModel() {
         textureWidth = 128;
         textureHeight = 128;
 
+        body = new ModelRenderer(this);
+        body.setRotationPoint(2.0167F, 7.7667F, -1.1333F);
+
+
         Torso = new ModelRenderer(this);
-        Torso.setRotationPoint(2.0167F, 2.6667F, -1.1333F);
+        Torso.setRotationPoint(0.0F, 0.0F, 0.0F);
+        body.addChild(Torso);
         setRotationAngle(Torso, 0.48F, 0.0F, 0.0F);
 
 
@@ -172,7 +173,8 @@ public class CaveHorrorEntityModel<T extends CaveHorror> extends EntityModel<Cav
         cube_r15.setTextureOffset(56, 0).addBox(-16.0F, -2.0F, -2.5F, 3.0F, 10.0F, 5.0F, 0.0F, false);
 
         LowerBody = new ModelRenderer(this);
-        LowerBody.setRotationPoint(0.0F, 15.0F, 0.0F);
+        LowerBody.setRotationPoint(-2.0167F, 12.3333F, 1.1333F);
+        body.addChild(LowerBody);
 
 
         cube_r16 = new ModelRenderer(this);
@@ -188,89 +190,46 @@ public class CaveHorrorEntityModel<T extends CaveHorror> extends EntityModel<Cav
         cube_r17.setTextureOffset(34, 9).addBox(-3.5F, -0.5F, -3.5F, 8.0F, 6.0F, 6.0F, 0.05F, false);
 
         Legs = new ModelRenderer(this);
-        Legs.setRotationPoint(0.0F, 9.0F, 0.0F);
+        Legs.setRotationPoint(3.0F, -0.006F, -5.1725F);
         LowerBody.addChild(Legs);
-
-
-        leftleg = new ModelRenderer(this);
-        leftleg.setRotationPoint(0.5F, -14.606F, -3.1725F);
-        Legs.addChild(leftleg);
-        setRotationAngle(leftleg, 0.0F, 0.0F, -0.0436F);
+        setRotationAngle(Legs, -0.1309F, 0.0F, 0.0F);
 
 
         cube_r18 = new ModelRenderer(this);
-        cube_r18.setRotationPoint(-0.2617F, 8.3163F, -0.8363F);
-        leftleg.addChild(cube_r18);
-        setRotationAngle(cube_r18, 0.1309F, 0.0F, 0.0F);
-        cube_r18.setTextureOffset(58, 39).addBox(-1.5F, 0.5F, -4.0F, 3.0F, 1.0F, 6.0F, 0.0F, false);
+        cube_r18.setRotationPoint(2.0F, -4.394F, 0.6725F);
+        Legs.addChild(cube_r18);
+        setRotationAngle(cube_r18, -0.2618F, 0.0F, 0.0F);
+        cube_r18.setTextureOffset(48, 61).addBox(-1.0F, -2.5F, -2.0F, 3.0F, 6.0F, 4.0F, 0.0F, false);
+        cube_r18.setTextureOffset(62, 62).addBox(-6.0F, -2.5F, -2.0F, 3.0F, 6.0F, 4.0F, 0.0F, false);
 
         cube_r19 = new ModelRenderer(this);
-        cube_r19.setRotationPoint(-0.7617F, 1.6003F, -0.3275F);
-        leftleg.addChild(cube_r19);
-        setRotationAngle(cube_r19, -0.2618F, 0.0F, 0.0F);
-        cube_r19.setTextureOffset(62, 62).addBox(-1.0F, -2.5F, -2.0F, 3.0F, 6.0F, 4.0F, 0.0F, false);
+        cube_r19.setRotationPoint(2.5F, 1.572F, 0.1637F);
+        Legs.addChild(cube_r19);
+        setRotationAngle(cube_r19, 0.1309F, 0.0F, 0.0F);
+        cube_r19.setTextureOffset(0, 65).addBox(-1.5F, -3.5F, -2.0F, 3.0F, 5.0F, 4.0F, 0.05F, false);
+        cube_r19.setTextureOffset(65, 46).addBox(-6.5F, -3.5F, -2.0F, 3.0F, 5.0F, 4.0F, 0.05F, false);
 
         cube_r20 = new ModelRenderer(this);
-        cube_r20.setRotationPoint(0.0872F, -0.4261F, 1.1637F);
-        leftleg.addChild(cube_r20);
+        cube_r20.setRotationPoint(2.5F, 2.322F, 0.1637F);
+        Legs.addChild(cube_r20);
         setRotationAngle(cube_r20, 0.1309F, 0.0F, 0.0F);
-        cube_r20.setTextureOffset(65, 46).addBox(-1.849F, 4.163F, -5.0261F, 3.0F, 5.0F, 4.0F, 0.05F, false);
-
-        rightleg = new ModelRenderer(this);
-        rightleg.setRotationPoint(6.0F, -15.4F, -4.0F);
-        Legs.addChild(rightleg);
-
-
-        cube_r21 = new ModelRenderer(this);
-        cube_r21.setRotationPoint(-1.0F, 2.4F, 0.5F);
-        rightleg.addChild(cube_r21);
-        setRotationAngle(cube_r21, -0.2618F, 0.0F, 0.0F);
-        cube_r21.setTextureOffset(48, 61).addBox(-1.0F, -2.5F, -2.0F, 3.0F, 6.0F, 4.0F, 0.0F, false);
-
-        cube_r22 = new ModelRenderer(this);
-        cube_r22.setRotationPoint(-0.5F, 8.3659F, -0.0088F);
-        rightleg.addChild(cube_r22);
-        setRotationAngle(cube_r22, 0.1309F, 0.0F, 0.0F);
-        cube_r22.setTextureOffset(0, 65).addBox(-1.5F, -3.5F, -2.0F, 3.0F, 5.0F, 4.0F, 0.05F, false);
-
-        cube_r23 = new ModelRenderer(this);
-        cube_r23.setRotationPoint(-0.5F, 9.1159F, -0.0088F);
-        rightleg.addChild(cube_r23);
-        setRotationAngle(cube_r23, 0.1309F, 0.0F, 0.0F);
-        cube_r23.setTextureOffset(34, 24).addBox(-1.5F, 0.5F, -4.0F, 3.0F, 1.0F, 6.0F, 0.0F, false);
+        cube_r20.setTextureOffset(34, 24).addBox(-1.5F, 0.5F, -4.0F, 3.0F, 1.0F, 6.0F, 0.0F, false);
+        cube_r20.setTextureOffset(58, 39).addBox(-6.5F, 0.5F, -4.0F, 3.0F, 1.0F, 6.0F, 0.0F, false);
     }
 
     @Override
-    public void setRotationAngles(CaveHorror entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
+    public void setRotationAngles(CaveHorror entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
     }
 
     @Override
     public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-        Torso.render(matrixStack, buffer, packedLight, packedOverlay);
-        LowerBody.render(matrixStack, buffer, packedLight, packedOverlay);
+        body.render(matrixStack, buffer, packedLight, packedOverlay);
     }
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
-    }
-
-    public ModelRenderer getArms() {
-        return Arms;
-    }
-
-    public ModelRenderer getRightleg() {
-        return rightleg;
-    }
-
-    public ModelRenderer getLeftleg() {
-        return leftleg;
-    }
-
-    @Override
-    public void setLivingAnimations(CaveHorror entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-        super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
     }
 }
