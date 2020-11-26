@@ -8,12 +8,13 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-public class CaveHorrorEntityRender extends MobRenderer<CaveHorror,CaveHorrorEntityModel<CaveHorror>> {
+public class CaveHorrorEntityRender extends GeoEntityRenderer<CaveHorror> {
     protected static final ResourceLocation TEXTURE = new ResourceLocation(mcslayer.MOD_ID,"textures/entity/cave_horror.png");
 
     public CaveHorrorEntityRender(EntityRendererManager renderManagerIn, CaveHorrorEntityModel<CaveHorror> entityModelIn, float shadowSizeIn) {
-        super(renderManagerIn, new CaveHorrorEntityModel<>(), .7f);
+        super(renderManagerIn, new CaveHorrorEntityModel<>());
     }
 
     @Override

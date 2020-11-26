@@ -29,6 +29,8 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
+//import software.bernie.geckolib.GeckoLib;
 
 @Mod("mcslayer")
 public class mcslayer {
@@ -38,6 +40,7 @@ public class mcslayer {
     public mcslayer() {
 
         Registration.register();
+        GeckoLib.initialize();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
